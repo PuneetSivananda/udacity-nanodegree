@@ -1,14 +1,14 @@
 // Find the largest number in an array
 const lgNum = (arr) => {
-let largest = 0;
-arr.forEach((x) => {
+  let largest = 0;
+  arr.forEach((x) => {
     if (x > largest) {
-    largest = x;
+      largest = x;
     }
-});
-return largest;
+  });
+  return largest;
 };
 
 module.exports = {
-    lgNum
-}
+  lgNum,
+};
