@@ -41,16 +41,24 @@ const milkQ = () => {
 
 const espressoQ = () => {
   return new Promise((resolve, reject) => {
-    rl.question('How many shots of espresso to add? ', (answer) => {
-      resolve(answer);
-    });
+    try {
+      rl.question('How many shots of espresso to add? ', (answer) => {
+        resolve(answer);
+      });
+    } catch (error) {
+      reject();
+    }
   });
 };
 const peppermintQ = () => {
   return new Promise((resolve, reject) => {
-    rl.question('How many shots of peppermint to add? ', (answer) => {
-      resolve(answer);
-    });
+    try {
+      rl.question('How many shots of peppermint to add? ', (answer) => {
+        resolve(answer);
+      });
+    } catch (error) {
+      reject();
+    }
   });
 };
 
@@ -100,22 +108,6 @@ class DarkChocolateMocha extends Mocha {
     this.chocolateType = 'Dark';
   }
 }
-// inherits from Mocha
-class PeppermintMocha extends Mocha {
-  constructor() {
-    // include super to pull in parent constructor
-    super();
-    this.peppermintSyrup = 1;
-  }
-  // Overrides Mocha prepare with additional statements
-  prepare() {
-    console.log('Your Peppermint Mocha Ingredients:');
-    console.log('Dark chocolate');
-    console.log('Cups of milk: ', this.milk);
-    console.log('Cups of espresso: ', this.shot);
-    console.log('Pumps of peppermint: ', this.peppermintSyrup, '\n\n');
-  }
-}
 
 const main = () => {
   let menuChoice = 0;
@@ -151,6 +143,24 @@ const main = () => {
   };
   buildMocha();
 };
+
+// inherits from Mocha
+class PeppermintMocha extends Mocha {
+  constructor() {
+    // include super to pull in parent constructor
+    super();
+    this.peppermintSyrup = 1;
+  }
+  // Overrides Mocha prepare with additional statements
+  prepare() {
+    console.log('Your Peppermint Mocha Ingredients:');
+    console.log('Dark chocolate');
+    console.log('Cups of milk: ', this.milk);
+    console.log('Cups of espresso: ', this.shot);
+    console.log('Pumps of peppermint: ', this.peppermintSyrup, '\n\n');
+  }
+}
+
 main();
 
 // display menu and return selected menu item
