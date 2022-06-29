@@ -9,5 +9,5 @@ const sum = (arr) => {
 };
 
 module.exports = {
-  sum,
+  sum
 };

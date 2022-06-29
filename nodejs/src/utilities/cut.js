@@ -5,5 +5,5 @@ const cut3 = (arr) => {
 };
 
 module.exports = {
-  cut3,
+  cut3
 };

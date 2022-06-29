@@ -10,5 +10,5 @@ const lgNum = (arr) => {
 };
 
 module.exports = {
-  lgNum,
+  lgNum
 };

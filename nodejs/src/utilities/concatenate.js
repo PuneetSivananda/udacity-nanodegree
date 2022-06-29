@@ -5,5 +5,5 @@ const concat = (arr1, arr2) => {
 };
 
 module.exports = {
-  concat,
+  concat
 };

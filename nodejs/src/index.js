@@ -26,20 +26,25 @@ const menuQ = () => {
     }
   });
 };
-let milkQ = () => {
+
+const milkQ = () => {
   return new Promise((resolve, reject) => {
-    rl.question('How many cups of milk to add? ', (answer) => {
-      resolve(answer);
-    });
+    try {
+        rl.question('How many cups of milk to add? ', (answer) => {
+        resolve(answer);
+        });
+    }catch(error){
+        reject()
+    }
   });
 };
 
 // User questions
 const userOptions = async (mochaObject) => {
-  let milkPicked = await milkQ();
-  let milkChoice = parseInt(milkPicked);
-  var espPicked = await espressoQ();
-  let espChoice = parseInt(espPicked);
+  const milkPicked = await milkQ();
+  const milkChoice = parseInt(milkPicked);
+  const espPicked = await espressoQ();
+  const espChoice = parseInt(espPicked);
   // If peppermint mocha
   if (mochaObject instanceof PeppermintMocha) {
     let pepPicked = await peppermintQ();
