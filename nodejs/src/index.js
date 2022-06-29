@@ -30,12 +30,27 @@ const menuQ = () => {
 const milkQ = () => {
   return new Promise((resolve, reject) => {
     try {
-        rl.question('How many cups of milk to add? ', (answer) => {
+      rl.question('How many cups of milk to add? ', (answer) => {
         resolve(answer);
-        });
-    }catch(error){
-        reject()
+      });
+    } catch (error) {
+      reject();
     }
+  });
+};
+
+const espressoQ = () => {
+  return new Promise((resolve, reject) => {
+    rl.question('How many shots of espresso to add? ', (answer) => {
+      resolve(answer);
+    });
+  });
+};
+const peppermintQ = () => {
+  return new Promise((resolve, reject) => {
+    rl.question('How many shots of peppermint to add? ', (answer) => {
+      resolve(answer);
+    });
   });
 };
 
@@ -56,20 +71,6 @@ const userOptions = async (mochaObject) => {
   mochaObject.prepare();
 };
 
-const espressoQ = () => {
-  return new Promise((resolve, reject) => {
-    rl.question('How many shots of espresso to add? ', (answer) => {
-      resolve(answer);
-    });
-  });
-};
-const peppermintQ = () => {
-  return new Promise((resolve, reject) => {
-    rl.question('How many shots of peppermint to add? ', (answer) => {
-      resolve(answer);
-    });
-  });
-};
 // Create parent class Mocha
 class Mocha {
   constructor() {
