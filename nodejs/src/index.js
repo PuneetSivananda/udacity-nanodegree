@@ -39,6 +39,38 @@ const milkQ = () => {
   });
 };
 
+// Create parent class Mocha
+class Mocha {
+  constructor() {
+    this.milk = 1;
+    this.shot = 1;
+    this.chocolateType = 'dark';
+  }
+  // list the ingredients of the mocha
+  prepare() {
+    console.log('Your', this.chocolateType, ' Chocolate Mocha Ingredients:');
+    console.log(this.chocolateType, ' chocolate');
+    console.log('Cups of milk: ', this.milk);
+    console.log('Cups of espresso: ', this.shot, '\n\n');
+  }
+}
+
+class PeppermintMocha extends Mocha {
+  constructor() {
+    // include super to pull in parent constructor
+    super();
+    this.peppermintSyrup = 1;
+  }
+  // Overrides Mocha prepare with additional statements
+  prepare() {
+    console.log('Your Peppermint Mocha Ingredients:');
+    console.log('Dark chocolate');
+    console.log('Cups of milk: ', this.milk);
+    console.log('Cups of espresso: ', this.shot);
+    console.log('Pumps of peppermint: ', this.peppermintSyrup, '\n\n');
+  }
+}
+
 const espressoQ = () => {
   return new Promise((resolve, reject) => {
     try {
@@ -70,8 +102,8 @@ const userOptions = async (mochaObject) => {
   const espChoice = parseInt(espPicked);
   // If peppermint mocha
   if (mochaObject instanceof PeppermintMocha) {
-    let pepPicked = await peppermintQ();
-    let pepChoice = parseInt(pepPicked);
+    const pepPicked = await peppermintQ();
+    const pepChoice = parseInt(pepPicked);
     mochaObject.peppermintSyrup = pepChoice;
   }
   mochaObject.milk = milkChoice;
@@ -79,21 +111,6 @@ const userOptions = async (mochaObject) => {
   mochaObject.prepare();
 };
 
-// Create parent class Mocha
-class Mocha {
-  constructor() {
-    this.milk = 1;
-    this.shot = 1;
-    this.chocolateType = 'dark';
-  }
-  // list the ingredients of the mocha
-  prepare() {
-    console.log('Your', this.chocolateType, ' Chocolate Mocha Ingredients:');
-    console.log(this.chocolateType, ' chocolate');
-    console.log('Cups of milk: ', this.milk);
-    console.log('Cups of espresso: ', this.shot, '\n\n');
-  }
-}
 // inherits from Mocha
 class WhiteChocolateMocha extends Mocha {
   constructor() {
@@ -109,6 +126,19 @@ class DarkChocolateMocha extends Mocha {
   }
 }
 
+// display menu and return selected menu item
+const showMenu = async () => {
+  console.log(
+    'Select Mocha from menu: \n',
+    '1: Create White Chocolate Mocha \n',
+    '2: Create Dark Chocolate Mocha \n',
+    '3: Create Peppermint Mocha\n',
+    '0: Exit\n'
+  );
+  const qMenu = await menuQ();
+  return qMenu;
+};
+
 const main = () => {
   let menuChoice = 0;
   const buildMocha = async () => {
@@ -119,19 +149,21 @@ const main = () => {
         case 0: {
           break;
         }
-        case 1:
-          let whiteMochaVar = 0;
+        case 1: {
           const whiteMocha = new WhiteChocolateMocha();
           await userOptions(whiteMocha);
           break;
-        case 2:
+        }
+        case 2: {
           const darkMocha = new DarkChocolateMocha();
           await userOptions(darkMocha);
           break;
-        case 3:
+        }
+        case 3: {
           const peppermintMocha = new PeppermintMocha();
           await userOptions(peppermintMocha);
           break;
+        }
         default: {
           console.log('Option invalid, please choose from menu.');
           break;
@@ -145,33 +177,5 @@ const main = () => {
 };
 
 // inherits from Mocha
-class PeppermintMocha extends Mocha {
-  constructor() {
-    // include super to pull in parent constructor
-    super();
-    this.peppermintSyrup = 1;
-  }
-  // Overrides Mocha prepare with additional statements
-  prepare() {
-    console.log('Your Peppermint Mocha Ingredients:');
-    console.log('Dark chocolate');
-    console.log('Cups of milk: ', this.milk);
-    console.log('Cups of espresso: ', this.shot);
-    console.log('Pumps of peppermint: ', this.peppermintSyrup, '\n\n');
-  }
-}
 
 main();
-
-// display menu and return selected menu item
-const showMenu = async () => {
-  console.log(
-    'Select Mocha from menu: \n',
-    '1: Create White Chocolate Mocha \n',
-    '2: Create Dark Chocolate Mocha \n',
-    '3: Create Peppermint Mocha\n',
-    '0: Exit\n'
-  );
-  const qMenu = await menuQ();
-  return qMenu;
-};
