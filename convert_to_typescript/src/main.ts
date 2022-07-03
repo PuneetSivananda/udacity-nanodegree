@@ -108,14 +108,14 @@ const showMenu = async () => {
 const userOptions = async (
   mochaObject: WhiteChocolateMocha | DarkChocolateMocha | PeppermintMocha
 ) => {
-  const milkPicked = await milkQ();
-  const milkChoice = parseInt(milkPicked);
-  const espPicked = await espressoQ();
-  const espChoice = parseInt(espPicked);
+  const milkPicked:string = await milkQ();
+  const milkChoice:number = parseInt(milkPicked);
+  const espPicked:string = await espressoQ();
+  const espChoice:number = parseInt(espPicked);
   // If peppermint mocha
   if (mochaObject instanceof PeppermintMocha) {
-    const pepPicked = await peppermintQ();
-    const pepChoice = parseInt(pepPicked);
+    const pepPicked:string = await peppermintQ();
+    const pepChoice:number = parseInt(pepPicked);
     mochaObject.peppermintSyrup = pepChoice;
   }
 
@@ -125,10 +125,10 @@ const userOptions = async (
 };
 
 const main = () => {
-  let menuChoice = 0;
+  let menuChoice:number = 0;
   const buildMocha = async () => {
     do {
-      const optionPicked = await showMenu();
+      const optionPicked:string = await showMenu();
       menuChoice = parseInt(optionPicked);
       switch (menuChoice) {
         case 0: {
