@@ -1,13 +1,18 @@
+type StringArrOrNumberArr = (string | number)[];
+
 // Concatenate two arrays
 
-const concatArr = (arr1, arr2) => {
+const concatArr = (
+  arr1: StringArrOrNumberArr,
+  arr2: StringArrOrNumberArr
+): StringArrOrNumberArr => {
   return [...arr1, ...arr2];
 };
 
 // Add numbers in an array
 
-const addArr = (arr) => {
-  let total = 0;
+const addArr = (arr: number[]): number => {
+  let total: number = 0;
   arr.forEach((x) => {
     total += x;
   });
