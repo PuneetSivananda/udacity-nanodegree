@@ -2,7 +2,7 @@ const concat = (str1: string, str2: string): string => {
   return str1 + str2;
 };
 
-const capitalize = (str) => {
+const capitalize = (str: string): string => {
   const newStr = str
     .split(' ')
     .map((word) => word[0].toUpperCase() + word.substr(1))
@@ -10,11 +10,11 @@ const capitalize = (str) => {
   return newStr;
 };
 
-const upperCase = (str) => {
+const upperCase = (str: string): string => {
   return str.toUpperCase();
 };
 
-const lowerCase = (str) => {
+const lowerCase = (str: string): string => {
   return str.toLowerCase();
 };
 

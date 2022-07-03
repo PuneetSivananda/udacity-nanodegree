@@ -1,7 +1,10 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.lowerCase = exports.upperCase = exports.capitalize = exports.concat = void 0;
 const concat = (str1, str2) => {
     return str1 + str2;
 };
+exports.concat = concat;
 const capitalize = (str) => {
     const newStr = str
         .split(' ')
@@ -9,15 +12,12 @@ const capitalize = (str) => {
         .join(' ');
     return newStr;
 };
+exports.capitalize = capitalize;
 const upperCase = (str) => {
     return str.toUpperCase();
 };
+exports.upperCase = upperCase;
 const lowerCase = (str) => {
     return str.toLowerCase();
 };
-module.exports = {
-    concat,
-    capitalize,
-    upperCase,
-    lowerCase
-};
+exports.lowerCase = lowerCase;

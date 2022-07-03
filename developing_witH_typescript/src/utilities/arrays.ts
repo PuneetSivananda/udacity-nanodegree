@@ -36,4 +36,4 @@ const cut3 = (arr: StringArrOrNumberArr): StringArrOrNumberArr => {
   return arr;
 };
 
-export { concatArr, addArr, lgNum, cut3 };
+export { concatArr, addArr, lgNum, cut3, StringArrOrNumberArr };
