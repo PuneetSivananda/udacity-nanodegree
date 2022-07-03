@@ -6,7 +6,7 @@ const numArr = [3, 4, 5, 6];
 const wordArr = ['cat', 'dog', 'rabbit', 'bird'];
 const arrSum = addArr(numArr);
 const mixArr = concatArr(numArr, wordArr);
-const myNum = '15' % 2;
+const myNum: number = parseInt('15') % 2;
 
 // results of function calls
 console.log(cut3(mixArr));
