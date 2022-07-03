@@ -1,4 +1,4 @@
-import { addArr, concatArr, cut3 } from  "./utilities/arrays"
+import { addArr, concatArr, cut3 } from './utilities/arrays';
 const numbers = require('./utilities/numbers.js');
 const strings = require('./utilities/strings.js');
 
