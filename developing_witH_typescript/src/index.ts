@@ -13,6 +13,8 @@ const wordArr: string[] = ['cat', 'dog', 'rabbit', 'bird'];
 const arrSum: number = addArr(numArr);
 const mixArr: StringArrOrNumberArr = concatArr(numArr, wordArr);
 const myNum: number = parseInt('15') % 2;
+// Type assertions
+const myNum1: number = ('15' as unknown) as number % 2;
 
 // results of function calls
 console.log(cut3(mixArr));
@@ -20,3 +22,4 @@ console.log(sum(arrSum, myNum));
 console.log(capitalize('the quick brown fox'));
 console.log(multiply(parseInt('5') as number, 8));
 console.log(lgNum(mixArr));
+console.log(myNum1)
