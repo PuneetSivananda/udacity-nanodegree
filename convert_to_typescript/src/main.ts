@@ -1,9 +1,9 @@
 // Import readline module for getting input from console
 // Find more here: https://nodejs.org/api/readline.html#readline_readline
-const readline = require('readline');
+import { createInterface } from 'readline';
 
 // define question/output interface
-const rl = readline.createInterface({
+const rl = createInterface({
   // readable stream
   input: process.stdin,
   // writeable stream
@@ -11,7 +11,7 @@ const rl = readline.createInterface({
 });
 
 // Create questions for STDIN Input from console.
-const menuQ = () => {
+const menuQ = (): Promise<string> => {
   return new Promise((resolve, reject) => {
     // (readable, writeable from readline interface)
     rl.question('Your choice: ', (answer) => {
@@ -20,7 +20,7 @@ const menuQ = () => {
   });
 };
 
-const milkQ = () => {
+const milkQ = (): Promise<string> => {
   return new Promise((resolve, reject) => {
     rl.question('How many cups of milk to add? ', (answer) => {
       resolve(answer);
@@ -28,7 +28,7 @@ const milkQ = () => {
   });
 };
 
-const espressoQ = () => {
+const espressoQ = (): Promise<string> => {
   return new Promise((resolve, reject) => {
     rl.question('How many shots of espresso to add? ', (answer) => {
       resolve(answer);
@@ -36,7 +36,7 @@ const espressoQ = () => {
   });
 };
 
-const peppermintQ = () => {
+const peppermintQ = (): Promise<string> => {
   return new Promise((resolve, reject) => {
     rl.question('How many shots of peppermint to add? ', (answer) => {
       resolve(answer);
@@ -106,7 +106,7 @@ const showMenu = async () => {
 
 // User questions
 const userOptions = async (
-  mochaObject
+  mochaObject: WhiteChocolateMocha | DarkChocolateMocha | PeppermintMocha
 ) => {
   const milkPicked = await milkQ();
   const milkChoice = parseInt(milkPicked);
@@ -126,7 +126,7 @@ const userOptions = async (
 
 const main = () => {
   let menuChoice = 0;
-  const buildMocha = async ()=> {
+  const buildMocha = async () => {
     do {
       const optionPicked = await showMenu();
       menuChoice = parseInt(optionPicked);
