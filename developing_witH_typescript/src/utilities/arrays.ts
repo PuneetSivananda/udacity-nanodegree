@@ -31,7 +31,7 @@ const concatArr = (arr1, arr2) => {
     return arr;
   };
   
-  module.exports = {
+export {
     concatArr,
     addArr,
     lgNum,
