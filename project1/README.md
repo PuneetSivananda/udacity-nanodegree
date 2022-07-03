@@ -11,4 +11,10 @@
         - tls/ssl ??
     * External
         - express
-        
+
+
+- Usecases
+    - Resize feature endpoint
+    - Caching for the image
+    - Placeholder endpoint
+    - Tests
