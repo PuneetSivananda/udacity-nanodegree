@@ -1,4 +1,4 @@
-type StringArrOrNumberArr = (string | number)[];
+type StringArrOrNumberArr = (string | number| unknown)[];
 
 // Concatenate two arrays
 
@@ -20,7 +20,7 @@ const addArr = (arr: number[]): number => {
 };
 
 // Find the largest number in an array
-const lgNum = (arr: number[]): number => {
+const lgNum = (arr: (number | any)[]): number | unknown => {
   let largest: number = 0;
   arr.forEach((x) => {
     if (x > largest) {

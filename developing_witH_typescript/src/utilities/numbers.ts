@@ -24,10 +24,4 @@ const square = (num) => {
   return num * num;
 };
 
-module.exports = {
-  multiply,
-  subtract,
-  divide,
-  sum,
-  square
-};
+export { multiply, subtract, divide, sum, square };

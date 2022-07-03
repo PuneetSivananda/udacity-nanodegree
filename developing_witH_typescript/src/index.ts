@@ -1,5 +1,5 @@
-import { addArr, concatArr, cut3 } from './utilities/arrays';
-import { sum, multiply, lgNum } from './utilities/numbers';
+import { addArr, concatArr, cut3, lgNum } from './utilities/arrays';
+import { sum, multiply } from './utilities/numbers';
 const strings = require('./utilities/strings.js');
 
 const numArr = [3, 4, 5, 6];
