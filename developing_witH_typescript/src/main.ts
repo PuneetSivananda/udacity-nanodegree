@@ -7,7 +7,7 @@ const multiply = (num1: number, num2: number) =>{
     console.log(`${num1} * ${num2} =`, num1 * num2)
 }
 
-const add = (num1, num2) =>{
+const add = (num1:number, num2:number) =>{
     console.log(`${num1} + ${num2} =`, num1 * num2)
 }
 
@@ -17,4 +17,4 @@ multiply(a,c)
 
 add(a, b)
 add(a, c)
-add(a, d)
+// add(a, d)
