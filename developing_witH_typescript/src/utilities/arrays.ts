@@ -20,8 +20,8 @@ const addArr = (arr: number[]): number => {
 };
 
 // Find the largest number in an array
-const lgNum = (arr) => {
-  let largest = 0;
+const lgNum = (arr: number[]): number => {
+  let largest: number = 0;
   arr.forEach((x) => {
     if (x > largest) {
       largest = x;
@@ -31,7 +31,7 @@ const lgNum = (arr) => {
 };
 
 // Remove the 3rd item from an array
-const cut3 = (arr) => {
+const cut3 = (arr: StringArrOrNumberArr): StringArrOrNumberArr => {
   arr.splice(2, 1);
   return arr;
 };

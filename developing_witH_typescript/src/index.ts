@@ -1,5 +1,5 @@
 import { addArr, concatArr, cut3 } from './utilities/arrays';
-const numbers = require('./utilities/numbers.js');
+import { sum, multiply, lgNum } from './utilities/numbers';
 const strings = require('./utilities/strings.js');
 
 const numArr = [3, 4, 5, 6];
@@ -10,7 +10,7 @@ const myNum = '15' % 2;
 
 // results of function calls
 console.log(cut3(mixArr));
-console.log(numbers.sum(arrSum, myNum));
+console.log(sum(arrSum, myNum));
 console.log(strings.capitalize('the quick brown fox'));
-console.log(numbers.multiply('5', 8));
-console.log(arrays.lgNum(mixArr));
+console.log(multiply('5', 8));
+console.log(lgNum(mixArr));
