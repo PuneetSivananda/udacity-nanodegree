@@ -1,4 +1,4 @@
-type StringArrOrNumberArr = (string | number| unknown)[];
+type StringArrOrNumberArr = (string | number | unknown)[];
 
 // Concatenate two arrays
 

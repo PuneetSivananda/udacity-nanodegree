@@ -1,4 +1,4 @@
-const concat = (str1, str2) => {
+const concat = (str1: string, str2: string): string => {
   return str1 + str2;
 };
 
@@ -18,9 +18,4 @@ const lowerCase = (str) => {
   return str.toLowerCase();
 };
 
-module.exports = {
-  concat,
-  capitalize,
-  upperCase,
-  lowerCase
-};
+export { concat, capitalize, upperCase, lowerCase };
