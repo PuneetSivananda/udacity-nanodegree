@@ -3,14 +3,27 @@ import logger from "./utilities/logger"
 import routes from "./routes"
 import studentRoutes from "./routes/api/students"
 import teacherRoutes from "./routes/api/teachers"
+import csv from "csvtojson"
+import { promises as fs } from "fs"
 
 const app = express()
 const port = 3000
 
-const cache = new Map()
-
-app.get("/convert", (req, res)=>{
-    console.log(cache)
+app.get("/convert", async (req, res)=>{
+    let returnJson: any[] = []
+    await csv()
+    .fromFile("users.csv")
+    .then((jsonObj)=>{
+        // console.log(jsonObj);
+        jsonObj.forEach(obj=>{
+            if(obj.phone===""){
+                obj.phone = "missing data"
+            }
+            returnJson.push(obj)
+        }) 
+    }).then(()=>{
+        fs.writeFile("users.json", JSON.stringify(returnJson))
+    }) 
     return res.sendStatus(200)
 })
 
