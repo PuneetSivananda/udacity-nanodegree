@@ -8,6 +8,7 @@ const writeData = async ()=>{
         console.log(error)
     }
 }
+writeData()
 
 export default {
     writeData

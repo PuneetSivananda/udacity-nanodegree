@@ -17,4 +17,10 @@
     - Resize feature endpoint
     - Caching for the image
     - Placeholder endpoint
-    - Tests
+    - Tests 
+
+- API Documentation
+    - GET ImageByID
+    - POST ResizeImage
+    - GET ImagePlaceHolder
+    - GET ImagePlaceHolder?width=%&height=%
