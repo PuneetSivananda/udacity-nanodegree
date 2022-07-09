@@ -7,6 +7,13 @@ import teacherRoutes from "./routes/api/teachers"
 const app = express()
 const port = 3000
 
+const cache = new Map()
+
+app.get("/convert", (req, res)=>{
+    console.log(cache)
+    return res.sendStatus(200)
+})
+
 app.use("/api", routes)
 app.use("/students", logger, studentRoutes)
 app.use("/teachers", logger, teacherRoutes)
