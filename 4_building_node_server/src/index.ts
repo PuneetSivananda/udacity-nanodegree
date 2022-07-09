@@ -7,10 +7,9 @@ import teacherRoutes from "./routes/api/teachers"
 const app = express()
 const port = 3000
 
-app.use(logger)
 app.use("/api", routes)
-app.use("/students", studentRoutes)
-app.use("/teachers", teacherRoutes)
+app.use("/students", logger, studentRoutes)
+app.use("/teachers", logger, teacherRoutes)
 
 
 app.listen(port, ()=>{
