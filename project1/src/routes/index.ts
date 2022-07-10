@@ -1,2 +1,2 @@
-import applicationRouter  from './application';
+import applicationRouter from './application';
 export { applicationRouter };

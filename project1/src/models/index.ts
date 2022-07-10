@@ -1,7 +1,3 @@
-interface IRequest{
+export interface IRequest {}
 
-}
-
-interface IResponse{
-    
-}
+export interface IResponse {}
