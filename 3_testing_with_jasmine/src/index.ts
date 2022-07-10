@@ -2,7 +2,7 @@ const myFunc = (num:number)=> num*5
 
 import { lgNum, cut3, addArr, concatArr } from './utilities/arrays';
 import { sum, multiply } from './utilities/numbers';
-import {capitalize} from './utilities/strings';
+import { capitalize } from './utilities/strings';
 
 const numArr = [3, 4, 5, 6];
 const wordArr = ['cat', 'dog', 'rabbit', 'bird'];
