@@ -1,6 +1,15 @@
 import { Router } from 'express';
-export const applicationRouter = Router();
+import resizeImage from "../controllers/reize"
+const applicationRouter = Router();
 
 applicationRouter.get('/ping', (req, res) => {
   return res.json({ ping: 'pong' });
 });
+
+
+applicationRouter.get('/resize', (req, res) => {
+  resizeImage()
+  return res.json({ "output": 'processed' });
+});
+
+export default applicationRouter
