@@ -7,3 +7,17 @@ const index_1 = __importDefault(require("../index"));
 it("expect myFunc(5) equal to 25", () => {
     expect((0, index_1.default)(5)).toEqual(25);
 });
+it("expect myFunc(5) toBe 25", () => {
+    expect((0, index_1.default)(5)).toBe(25);
+});
+it("expect myFunc(5) toBe 25", () => {
+    expect((0, index_1.default)(0)).not.toBeTruthy();
+});
+it("tobe close to 45", () => {
+    expect((0, index_1.default)(8.9)).toBeCloseTo(45, 0);
+});
+const arr1 = ['cat', 'dog', 'horse'];
+const arr2 = ['cat', 'dog', 'horse'];
+it("expects arr1 to refer to arr2", () => {
+    expect(arr1).toBe(arr2);
+});
