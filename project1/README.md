@@ -8,19 +8,36 @@
         - crud for fs
         - http/https
         - url  ??
-        - tls/ssl ??
+        - tls/ssl  add, cors middleware
     * External
         - express
 
 
 - Usecases
-    - Resize feature endpoint
-    - Caching for the image
-    - Placeholder endpoint
-    - Tests 
+    - Resize feature endpoint  [X]
+    - Placeholder endpoint     [X]    
+    - Caching for the image    [X]
+    - Tests                    [X]
 
-- API Documentation
+- API Endpoints Documentation
     - GET ImageByID
-    - POST ResizeImage
-    - GET ImagePlaceHolder
-    - GET ImagePlaceHolder?width=%&height=%
+    - POST ResizeImage?width=%height=%
+    - GET ImagePlaceHolder?file=%width=%&height=%
+
+- Place holder API
+    - API returns image as a placeholder
+    - URL Query Params
+        - name: ['encenada', 'fjord', 'iceland', 'palmtunnel', 'santamonica']
+        - width: pixels
+        - height: pixels
+    - if the processed image exists serve from cache
+
+- Resize feature of the API:
+    - Read photo from request body
+    - From query params get width and height
+    - Store this feature in process folder
+    - User provides the image and returns the image in response
+    - URL Query Params
+        - name: ['encenada', 'fjord', 'iceland', 'palmtunnel', 'santamonica']
+        - width: pixels
+        - height: pixels
