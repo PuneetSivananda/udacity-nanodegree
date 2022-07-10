@@ -1,4 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const myFunc = (num) => num * 5;
+const arrays_1 = require("./utilities/arrays");
+const numbers_1 = require("./utilities/numbers");
+const strings_1 = require("./utilities/strings");
+const numArr = [3, 4, 5, 6];
+const wordArr = ['cat', 'dog', 'rabbit', 'bird'];
+const arrSum = (0, arrays_1.addArr)(numArr);
+const mixArr = (0, arrays_1.concatArr)(numArr, wordArr);
+const myNum = '15' % 2;
+const five = parseInt('5');
+console.log((0, arrays_1.cut3)(mixArr));
+console.log((0, numbers_1.sum)(arrSum, myNum));
+console.log((0, strings_1.capitalize)('the quick brown fox'));
+console.log((0, numbers_1.multiply)(five, 8));
+console.log((0, arrays_1.lgNum)(mixArr));
 exports.default = myFunc;
