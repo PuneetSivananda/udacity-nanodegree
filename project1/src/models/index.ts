@@ -1,9 +1,11 @@
-export interface IRequest {}
-
-export interface IResponse {}
-
-export interface ICacheItem {
+export interface IRequestItem {
   width?: string;
   height?: string;
-  destPath?: string;
+  name?: string;
+}
+
+export interface ICacheItem{
+    destPath?: string
+    height?: string
+    width?: string
 }
