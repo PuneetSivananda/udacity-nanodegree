@@ -19,7 +19,7 @@
 
 - To Test the API Locally:
     - use this given endpoint to check if the API is up and running
-        - http://localhost:3000/api/v1/ping
+        - http://localhost:3000/api/v1/health
     - to use the IMAGE Processing API visit this URL
         - http://localhost:3000/api/v1/resize?name=encendaport&width=300&height=300
         - Imageis created for the first time and served to the user

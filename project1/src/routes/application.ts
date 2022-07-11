@@ -6,7 +6,8 @@ import { resizeImage } from '../controllers';
 import urlParser from '../utils/urlParser';
 const applicationRouter = Router();
 
-applicationRouter.get('/ping', (req, res) => {
+applicationRouter.get('/health', (req, res) => {
+  res.statusCode = 200;
   return res.json({ ping: 'pong' });
 });
 
