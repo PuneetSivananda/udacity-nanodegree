@@ -1,5 +1,7 @@
-import { Router } from 'express';
+
+import { Request, Response, Router } from 'express';
 import { resizeImage } from '../controllers';
+import urlParser from "../utils/urlParser"
 const applicationRouter = Router();
 
 applicationRouter.get('/ping', (req, res) => {
@@ -7,16 +9,21 @@ applicationRouter.get('/ping', (req, res) => {
 });
 
 const cache = new Map();
-applicationRouter.get('/resize', async (req, res) => {
-  // get the input parms from query params
-  // search if the file exists in cache using fs
-  // return file found
+
+applicationRouter.get('/resize', urlParser, async (req, res) => {
+  // middle ware to parse url params 
+  // from params check if file exists 
+  // if exists return in response file
+  // else call file creation
   // call generate and return the file from generate
-  const data = cache.entries()
+  const data = cache.get("entries")
   console.log(data)
-  const fileDetail = await resizeImage();
-  cache.set("entries", fileDetail)
-  return res.json({ output: fileDetail });
+  if(!data){
+    const fileDetail = await resizeImage();
+    cache.set("entries", fileDetail)
+    console.log("creating for the first time")
+  }
+  return res.json({ output: data });
 });
 
 export default applicationRouter;
