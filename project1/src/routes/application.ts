@@ -1,5 +1,6 @@
 
-import { Request, Response, Router } from 'express';
+import { Router } from 'express';
+import {ICacheItem} from "../models"
 import { resizeImage } from '../controllers';
 import urlParser from "../utils/urlParser"
 const applicationRouter = Router();
@@ -29,7 +30,7 @@ applicationRouter.get('/resize', urlParser, async (req, res) => {
   //   return res.json({ output: fileDetail })
   // }
   // add to cache details 
-  let cacheDetail:{width:any, height:any, destPath:any} = { width:0, height:0, destPath:"" }
+  let cacheDetail: ICacheItem = { width:0, height:0, destPath:"" }
   cacheDetail["width"] = fileDetail?.resize.width
   cacheDetail["height"] = fileDetail?.resize.height
   cacheDetail["destPath"] = fileDetail?.destPath
