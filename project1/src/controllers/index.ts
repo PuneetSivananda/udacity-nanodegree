@@ -1,2 +1,2 @@
-import resizeImage from './reize';
+import resizeImage from './resize';
 export { resizeImage };

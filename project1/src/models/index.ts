@@ -4,7 +4,7 @@ export interface IResponse {}
 
 
 export interface ICacheItem {
-    width?: number, 
-    height?: number, 
+    width?: string, 
+    height?: string, 
     destPath?: string
 }
