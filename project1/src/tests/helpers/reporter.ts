@@ -3,7 +3,8 @@ import {
   SpecReporter,
   StacktraceOption
 } from 'jasmine-spec-reporter';
-import SuiteInfo = jasmine.SuiteInfo;
+
+import jasmine  from "jasmine"
 
 class CustomProcessor extends DisplayProcessor {
   public displayJasmineStarted(

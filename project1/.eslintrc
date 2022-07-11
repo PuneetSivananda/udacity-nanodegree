@@ -1,5 +1,6 @@
 {
     "root": true,
+    "parser":"babel-eslint",
     "plugins": ["prettier"],
     "extends": ["eslint:recommended", "prettier"],
     "rules": {
@@ -9,10 +10,11 @@
       "prefer-const": "error"
     },
     "parserOptions": {
-      "ecmaVersion": 2017,
+      "ecmaVersion": 2020,
       "sourceType": "module"
     },
     "env": {
+      "jasmine": true,
       "node": true,
       "es6": true
     }

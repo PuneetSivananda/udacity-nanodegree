@@ -18,7 +18,7 @@ applicationRouter.get('/resize', urlParser, async (req, res) => {
   // call generate and return the file from generate
 
   // search in cache
-  let requestObj: IRequestItem = {
+  const requestObj: IRequestItem = {
     name: res.locals.file,
     width: res.locals.width,
     height: res.locals.height
@@ -29,7 +29,7 @@ applicationRouter.get('/resize', urlParser, async (req, res) => {
 
   // handling a custom cache was expensive cause spaghetti code switching to reading from fs
 
-  let filePath = path.resolve(
+  const filePath = path.resolve(
     `./upload/process/${requestObj.name}_${requestObj.width}_${requestObj.height}.jpg`
   );
   try {
@@ -47,7 +47,7 @@ applicationRouter.get('/resize', urlParser, async (req, res) => {
     }
   } catch (error) {
     if (!existsSync(filePath)) {
-      let err = new Error('Unable to open file');
+      const err = new Error('Unable to open file');
       res.statusCode = 404;
       return res.send({
         message: 'Error Processing Image',
