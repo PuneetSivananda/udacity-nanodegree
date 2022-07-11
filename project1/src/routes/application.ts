@@ -4,7 +4,6 @@ import { existsSync } from 'fs';
 import { IRequestItem } from '../models';
 import { resizeImage } from '../controllers';
 import urlParser from '../utils/urlParser';
-import { error } from 'console';
 const applicationRouter = Router();
 
 applicationRouter.get('/ping', (req, res) => {

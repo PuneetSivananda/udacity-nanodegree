@@ -1,8 +1,12 @@
-const myFunc = () => 5 * 5;
+import supertest from "supertest"
+import app from "../index"
 
+const request = supertest(app)
 
-describe("Spec for Index Utility", ()=>{
-    it('expect myFunc() equal to 25', () => {
-        expect(myFunc()).toEqual(25);
+describe("Spec for Testing endpoint responses", ()=>{
+    it('tests ping endpoint will return 200 status code', async (done) => {
+        const response = await request.get("/ping")
+        expect(response.status).toBe(200)
+        done();
     });     
 })
