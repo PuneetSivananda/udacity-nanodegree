@@ -4,7 +4,7 @@ import {
   StacktraceOption
 } from 'jasmine-spec-reporter';
 
-import jasmine  from "jasmine"
+import jasmine from 'jasmine';
 
 class CustomProcessor extends DisplayProcessor {
   public displayJasmineStarted(
