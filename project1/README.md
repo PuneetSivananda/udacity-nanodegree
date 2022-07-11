@@ -38,6 +38,6 @@
     - Store this feature in process folder
     - User provides the image and returns the image in response
     - URL Query Params
-        - name: ['encenada', 'fjord', 'iceland', 'palmtunnel', 'santamonica']
+        - name: ['encenadaport', 'fjord', 'icelandwaterfall', 'palmtunnel', 'santamonica']
         - width: pixels
         - height: pixels
