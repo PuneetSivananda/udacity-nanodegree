@@ -16,12 +16,19 @@ applicationRouter.get('/resize', urlParser, async (req, res) => {
   // if exists return in response file
   // else call file creation
   // call generate and return the file from generate
+  let fileDetailsArray: any[] = []
+  let fileName, width, height
+  console.log(res.locals.file)
+  console.log(res.locals.width)
+  console.log(res.locals.height)
   const data = cache.get("entries")
   console.log(data)
-  if(!data){
-    const fileDetail = await resizeImage();
-    cache.set("entries", fileDetail)
-    console.log("creating for the first time")
+  if(data == undefined){
+    const fileDetail = await resizeImage(fileName, width, height);
+    const newFileDetails = [...fileDetailsArray, fileDetail]
+    cache.set("entries", newFileDetails)
+    fileDetailsArray = newFileDetails
+    return res.json({ output: fileDetail })
   }
   return res.json({ output: data });
 });

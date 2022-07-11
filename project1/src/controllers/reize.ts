@@ -1,7 +1,7 @@
 import sharp from 'sharp';
 import path from 'path';
 
-const resizeImage = async () => {
+const resizeImage = async (fileName:any, width:any, height:any) => {
   try {
     const srcPath = path.resolve('upload/img', 'fjord.jpg');
     const destPath = path.resolve('upload/process', 'fjord_processed.jpg');
