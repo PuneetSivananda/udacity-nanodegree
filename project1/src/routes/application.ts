@@ -18,25 +18,25 @@ applicationRouter.get('/resize', urlParser, async (req, res) => {
   // else call file creation
   // call generate and return the file from generate
 
-  // let fileDetailsArray: any[] = []
-  const fileDetail = await resizeImage(res.locals.file, res.locals.width, res.locals.height);
-  // const data = cache.get("entries")
-  // console.log(data)
-  // if(data == undefined){
-  //   const fileDetail = await resizeImage(fileName, width, height);
-  //   const newFileDetails = [...fileDetailsArray, fileDetail]
-  //   cache.set("entries", newFileDetails)
-  //   fileDetailsArray = newFileDetails
-  //   return res.json({ output: fileDetail })
-  // }
+  let fileDetailsArray: ICacheItem[] = []
+  // const fileDetail = await resizeImage(res.locals.file, res.locals.width, res.locals.height);
+  const cacheData  = cache.get("entries")
+  console.log(cacheData)
+  if(cacheData == undefined){
+    const fileDetail = await resizeImage(res.locals.file, res.locals.width, res.locals.height);
+    const newFileDetails = [...fileDetailsArray, fileDetail]
+    cache.set("entries", newFileDetails)
+    // fileDetailsArray = newFileDetails
+    return res.json({ output: fileDetail })
+  }
   // add to cache details 
-  let cacheDetail: ICacheItem = { width:0, height:0, destPath:"" }
-  cacheDetail["width"] = fileDetail?.resize.width
-  cacheDetail["height"] = fileDetail?.resize.height
-  cacheDetail["destPath"] = fileDetail?.destPath
-  console.log(cacheDetail)
+  // let cacheDetail: ICacheItem = { width:0, height:0, destPath:"" }
+  // cacheDetail["width"] = fileDetail?.resize.width
+  // cacheDetail["height"] = fileDetail?.resize.height
+  // cacheDetail["destPath"] = fileDetail?.destPath
+  // console.log(cacheDetail)
 
-  return res.json({ output: fileDetail });
+  return res.sendFile(cacheData[0].destPath);
 });
 
 export default applicationRouter;
