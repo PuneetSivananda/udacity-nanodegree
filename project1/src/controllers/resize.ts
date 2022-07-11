@@ -2,7 +2,11 @@ import sharp from 'sharp';
 import path from 'path';
 import { ICacheItem } from '../models';
 
-const resizeImage = async (fileName: string, width: number, height: number) => {
+const resizeImage = async (
+  fileName: string,
+  width: number,
+  height: number
+): Promise<ICacheItem | undefined> => {
   try {
     const srcPath = path.resolve('upload/img', `${fileName}.jpg`);
     const destPath = path.resolve(
