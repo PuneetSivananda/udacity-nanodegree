@@ -23,30 +23,31 @@ applicationRouter.get('/resize', urlParser, async (req, res) => {
   const cacheData = cache.get('entries');
   if (cacheData != undefined && cacheData.length >= 1) {
     // search in cache
-    console.log(res.locals.file, res.locals.width, res.locals.height);
     let requestObj = {
       name: res.locals.file,
       width: res.locals.width,
       height: res.locals.height
     };
 
-    cacheData.forEach((element: ICacheItem) => {
+    const cacheElement = cacheData.map((element: ICacheItem) => {
       let splitString = path.basename(element.destPath || '', '.jpg');
       let fileObj = { name: '', width: '', height: '' };
       fileObj.name = splitString.split('_')[0];
-      fileObj.width = splitString.split('_')[1];
       fileObj.height = splitString.split('_')[2];
-      console.log(fileObj);
-      console.log(requestObj);
+      fileObj.width = splitString.split('_')[1];
+      if(JSON.stringify(fileObj) === JSON.stringify(requestObj)){
+        return fileObj
+      }
     });
-    return res.sendFile(`${cacheData[0]?.destPath}`);
+    let respFilePath = path.resolve(`./upload/process/${cacheElement[0].name}_${cacheElement[0].width}_${cacheElement[0].height}.jpg`)
+    return res.sendFile(respFilePath);
   }
 
   if (!cacheData) {
     const fileDetail = await resizeImage(
       res.locals.file,
-      res.locals.width,
-      res.locals.height
+      parseInt(res.locals.width),
+      parseInt(res.locals.height)
     );
     const newFileDetails = [...fileDetailsArray, fileDetail];
     cache.set('entries', newFileDetails);
