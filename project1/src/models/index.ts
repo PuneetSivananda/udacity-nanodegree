@@ -10,4 +10,4 @@ interface ICacheItem {
   width?: string;
 }
 
-export { IRequestItem, ICacheItem }
+export { IRequestItem, ICacheItem };
