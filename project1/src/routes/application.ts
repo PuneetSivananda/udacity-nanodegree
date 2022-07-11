@@ -20,10 +20,11 @@ applicationRouter.get('/resize', urlParser, async (req, res) => {
 
   // search in cache
   const requestObj: IRequestItem = {
-    name: res.locals.file,
+    name: res.locals.name,
     width: res.locals.width,
     height: res.locals.height
   };
+  console.log(requestObj)
   // find file in path
   // exists send the file
   // does not exist generate and send file
@@ -33,6 +34,7 @@ applicationRouter.get('/resize', urlParser, async (req, res) => {
   const filePath = path.resolve(
     `./upload/process/${requestObj.name}_${requestObj.width}_${requestObj.height}.jpg`
   );
+  console.log(filePath)
   try {
     if (existsSync(filePath)) {
       res.statusCode = 200;
