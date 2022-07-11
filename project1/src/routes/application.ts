@@ -33,9 +33,11 @@ applicationRouter.get('/resize', urlParser, async (req, res) => {
 
   let filePath = path.resolve(`./upload/process/${requestObj.name}_${requestObj.width}_${requestObj.height}.jpg`)
   if (existsSync(filePath)){
-    res.sendFile(filePath)
+    res.statusCode = 200
+    return res.sendFile(filePath, {})
   }
   else{
+    res.statusCode = 200
     const fileDetail = await resizeImage(res.locals.file, parseInt(res.locals.width), parseInt(res.locals.height))  
     return res.sendFile(`${fileDetail?.destPath}`);
   }
