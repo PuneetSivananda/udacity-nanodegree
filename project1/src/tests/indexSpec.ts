@@ -1,5 +1,8 @@
 const myFunc = () => 5 * 5;
 
-it('expect myFunc() equal to 25', () => {
-  expect(myFunc()).toEqual(25);
-});
+
+describe("Spec for Index Utility", ()=>{
+    it('expect myFunc() equal to 25', () => {
+        expect(myFunc()).toEqual(25);
+    });     
+})
