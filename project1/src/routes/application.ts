@@ -16,21 +16,26 @@ applicationRouter.get('/resize', urlParser, async (req, res) => {
   // if exists return in response file
   // else call file creation
   // call generate and return the file from generate
-  let fileDetailsArray: any[] = []
-  let fileName, width, height
-  console.log(res.locals.file)
-  console.log(res.locals.width)
-  console.log(res.locals.height)
-  const data = cache.get("entries")
-  console.log(data)
-  if(data == undefined){
-    const fileDetail = await resizeImage(fileName, width, height);
-    const newFileDetails = [...fileDetailsArray, fileDetail]
-    cache.set("entries", newFileDetails)
-    fileDetailsArray = newFileDetails
-    return res.json({ output: fileDetail })
-  }
-  return res.json({ output: data });
+
+  // let fileDetailsArray: any[] = []
+  const fileDetail = await resizeImage(res.locals.file, res.locals.width, res.locals.height);
+  // const data = cache.get("entries")
+  // console.log(data)
+  // if(data == undefined){
+  //   const fileDetail = await resizeImage(fileName, width, height);
+  //   const newFileDetails = [...fileDetailsArray, fileDetail]
+  //   cache.set("entries", newFileDetails)
+  //   fileDetailsArray = newFileDetails
+  //   return res.json({ output: fileDetail })
+  // }
+  // add to cache details 
+  let cacheDetail:{width:any, height:any, destPath:any} = { width:0, height:0, destPath:"" }
+  cacheDetail["width"] = fileDetail?.resize.width
+  cacheDetail["height"] = fileDetail?.resize.height
+  cacheDetail["destPath"] = fileDetail?.destPath
+  console.log(cacheDetail)
+
+  return res.json({ output: fileDetail });
 });
 
 export default applicationRouter;
