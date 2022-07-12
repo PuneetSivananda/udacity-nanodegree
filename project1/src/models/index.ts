@@ -1,11 +1,13 @@
-export interface IRequestItem {
+interface IRequestItem {
   width?: string;
   height?: string;
   name?: string;
 }
 
-export interface ICacheItem {
+interface ICacheItem {
   destPath?: string;
   height?: string;
   width?: string;
 }
+
+export { IRequestItem, ICacheItem };
