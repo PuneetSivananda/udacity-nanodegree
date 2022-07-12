@@ -1,15 +1,13 @@
 import path from 'path';
-import { Request, Response } from 'express';
-import { Router } from 'express';
+import { Request, Response, Router } from 'express';
 import { existsSync } from 'fs';
 import { IRequestItem } from '../models';
 import { resizeImage } from '../controllers';
 import urlParser from '../utils/urlParser';
-const applicationRouter = Router();
+const applicationRouter: Router = Router();
 
-applicationRouter.get('/health', (req, res) => {
-  res.statusCode = 200;
-  return res.json({ ping: 'pong' });
+applicationRouter.get('/health', (req: Request, res: Response) => {
+  return res.status(200).json({ ping: 'pong' });
 });
 
 applicationRouter.get(
