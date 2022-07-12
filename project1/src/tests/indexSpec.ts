@@ -1,6 +1,6 @@
 import supertest from 'supertest';
 import app from '../index';
-import {resizeImage} from "../controllers"
+import { resizeImage } from '../controllers';
 
 const request = supertest(app);
 
@@ -32,14 +32,11 @@ describe('Spec for Testing Image Endpoints', () => {
   });
 });
 
-
 describe('Spec for Testing Image File is created', () => {
   it('tests image resize function call', async () => {
-    const response = await resizeImage(
-      'encenadaport',
-      300,
-      300
+    const response = await resizeImage('encenadaport', 300, 300);
+    expect(response?.destPath).toEqual(
+      'D:\\code\\Udacity\\SE_Nanodegree\\project1\\upload\\process\\encenadaport_300_300.jpg'
     );
-    expect(response?.destPath).toEqual("D:\\code\\Udacity\\SE_Nanodegree\\project1\\upload\\process\\encenadaport_300_300.jpg");
-  }); 
+  });
 });
