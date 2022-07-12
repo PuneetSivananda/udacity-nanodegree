@@ -1,5 +1,6 @@
 import supertest from 'supertest';
 import app from '../index';
+import {resizeImage} from "../controllers"
 
 const request = supertest(app);
 
@@ -18,15 +19,27 @@ describe('Spec for Testing Ping endpoints', () => {
 describe('Spec for Testing Image Endpoints', () => {
   it('tests image resize endpoint to return 200 status code if it passes', async () => {
     const response = await request.get(
-      '/api/v1/resize?file=encenadaport&width=200&height=200'
+      '/api/v1/resize?name=encenadaport&width=200&height=200'
     );
     expect(response.status).toEqual(200);
   });
 
-  xit('tests image resize endpoint to return 400 status code if it failes', async () => {
+  xit('tests image resize endpoint to return 404 status code if it failes', async () => {
     const response = await request.get(
-      '/api/v1/resize?file=encenadap&width=200&height=200'
+      '/api/v1/resize?name=encenadap&width=200&height=200'
     );
     expect(response.status).toEqual(404);
   });
+});
+
+
+describe('Spec for Testing Image File is created', () => {
+  it('tests image resize function call', async () => {
+    const response = await resizeImage(
+      'encenadaport',
+      300,
+      300
+    );
+    expect(response?.destPath).toEqual("D:\\code\\Udacity\\SE_Nanodegree\\project1\\upload\\process\\encenadaport_300_300.jpg");
+  }); 
 });
