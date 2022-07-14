@@ -45,7 +45,7 @@ applicationRouter.get(
         return res.status(200).sendFile(filePath);
       } else {
         const fileDetail = await resizeImage(
-          res.locals.file,
+          requestObj['name'] ? requestObj['name'] : '',
           parseInt(res.locals.width),
           parseInt(res.locals.height)
         );

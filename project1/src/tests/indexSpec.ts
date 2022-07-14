@@ -24,7 +24,7 @@ describe('Spec for Testing Image Endpoints', () => {
     expect(response.status).toEqual(200);
   });
 
-  xit('tests image resize endpoint to return 404 status code if it failes', async () => {
+  it('tests image resize endpoint to return 404 status code if it failes', async () => {
     const response = await request.get(
       '/api/v1/resize?name=encenadap&width=200&height=200'
     );
@@ -35,8 +35,8 @@ describe('Spec for Testing Image Endpoints', () => {
 describe('Spec for Testing Image File is created', () => {
   it('tests image resize function call', async () => {
     const response = await resizeImage('encenadaport', 300, 300);
-    expect(response?.destPath).toEqual(
-      'D:\\code\\Udacity\\SE_Nanodegree\\project1\\upload\\process\\encenadaport_300_300.jpg'
+    expect(response?.destPath?.split('project1')[1]).toEqual(
+      `\\upload\\process\\encenadaport_300_300.jpg`
     );
   });
 });
