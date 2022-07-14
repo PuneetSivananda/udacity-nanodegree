@@ -31,6 +31,42 @@ const TOGGLE_TODO = "TOGGLE_TODO"
 const ADD_GOAL = "ADD_GOAL"
 const REMOVE_GOAL = "REMOVE_GOAL"
 
+// Create action creaters for specific actions
+function addTodoAction(todo){
+    return {
+        type: ADD_TODO,
+        todo
+    }
+}
+
+function removeTodoAction(id){
+    return {
+        type: REMOVE_TODO,
+        id
+    }
+}
+
+function toggleTodoAction(id) {
+    return {
+        type: TOGGLE_TODO,
+        id
+    }
+}
+
+function addGoalAction(goal){
+    return {
+        type: ADD_GOAL,
+        goal
+    }
+}
+
+
+function removeGoalAction(id) {
+    return {
+        type: REMOVE_GOAL,
+        id
+    }
+}
 
 function todos(state = [], action) {
     switch (action.type) {
@@ -71,48 +107,39 @@ store.subscribe(() => {
     console.log("The new state is ", store.getState())
 })
 
-store.dispatch({
-    type: ADD_TODO,
-    todo: {
-        id: 0,
-        name: "Learn Redux",
-        complete: false
-    }
-})
+store.dispatch(addTodoAction({
+  id: 0,
+  name: "Learn Redux",
+  complete: false
+}))
 
-store.dispatch({
-    type: ADD_TODO,
-    todo: {
-        id: 1,
-        name: "Learn CSS",
-        complete: false
-    }
-})
+store.dispatch(addTodoAction({
+    id: 0,
+    name: "Learn Redux",
+    complete: false
+}))
 
-store.dispatch({
-    type: ADD_TODO,
-    todo: {
+
+store.dispatch(addTodoAction({
+    id: 1,
+    name: "Learn CSS",
+    complete: false
+}))
+
+store.dispatch(addTodoAction({
         id: 2,
         name: "Learn React",
         complete: false
-    }
-})
+}))
 
-store.dispatch({
-    type: ADD_GOAL,
-    goal: {
+store.dispatch(addGoalAction({
         id: 1,
         name: "Lose Weight"
-    }
-})
-store.dispatch({
-    type: ADD_GOAL,
-    goal: {
+}))
+
+store.dispatch(addGoalAction({
         id: 2,
         name: "Earn Money"
-    }
-})
-store.dispatch({
-    type: REMOVE_GOAL,
-    id: 2
-})
+}))
+
+store.dispatch(removeGoalAction(2))
