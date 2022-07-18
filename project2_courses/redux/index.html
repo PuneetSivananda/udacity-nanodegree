@@ -10,7 +10,7 @@
             <input id="todo" type="text" placeholder="Add Todo"/>
             <button id="todoBtn">Add Todo</button>
             <ul id="todos">
-                <li></li>
+        
             </ul>
         </div>
         <div>
@@ -18,7 +18,7 @@
             <input id="goal" type="text" placeholder="Add Goal"/>
             <button id="goalBtn">Add Goal</button>
             <ul id="goals">
-                <li></li>
+        
             </ul>
         </div>
         <script type="text/javascript">
@@ -132,9 +132,26 @@
             // When you create a store pass the specific reducer fuction on the app data
             const store = createStore(app)
 
-            store.subscribe(() => {
+            // Can be used for debugging the current store state
+            // store.subscribe(() => {
+            //     console.log("The new state is ", store.getState())
+            // })
+
+            store.subscribe(()=>{
+                const { goals, todos } = store.getState()
+
+                document.getElementById("goals").innerHTML= ""
+                document.getElementById("todos").innerHTML= ""
+
+                goals.forEach(addGoalToDOM)
+                todos.forEach(addTodoToDOM)
+                
+                // for debugging purposes
                 console.log("The new state is ", store.getState())
+
             })
+
+
 
             // store.dispatch(addTodoAction({
             // id: 0,
@@ -193,6 +210,24 @@
                     id: generate(),
                     name,
                 }))
+            }
+            //Dom functions
+            function addTodoToDOM(todo){
+               const node = document.createElement("li")
+               const text = document.createTextNode(todo.name)
+               node.appendChild(text)
+
+               document.getElementById("todos")
+               .appendChild(node)
+            }
+
+            function addGoalToDOM(goal){
+                const node = document.createElement("li")
+                const text = document.createTextNode(goal.name)
+                node.appendChild(text)
+
+                document.getElementById("goals")
+                .appendChild(node)
             }
 
             document.getElementById("todoBtn")
