@@ -127,15 +127,12 @@
                 }
             }
 
-            function app(state = {}, action){
-                return {
-                    todos: todos(state.todos, action), 
-                    goals: goals(state.goals, action)
-                }
-            }
-
+            
             // When you create a store pass the specific reducer fuction on the app data
-            const store = Redux.createStore(app)
+            const store = Redux.createStore(Redux.combineReducers({
+                todos,
+                goals
+            }))
 
             // Can be used for debugging the current store state
             // store.subscribe(() => {
