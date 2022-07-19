@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.1.2/redux.min.js"></script>
         <title>Todos</title>
     </head>
     <body>
@@ -28,7 +29,9 @@
             }
 
             //Library Code
-            function createStore(reducer) {
+            /**
+             * Build your own Store
+             * function createStore(reducer) {
                 let state;
                 let listeners = []
                 const getState = () => state
@@ -51,6 +54,8 @@
                     dispatch
                 }
             }
+            */
+
 
 
             // App Code
@@ -130,7 +135,7 @@
             }
 
             // When you create a store pass the specific reducer fuction on the app data
-            const store = createStore(app)
+            const store = Redux.createStore(app)
 
             // Can be used for debugging the current store state
             // store.subscribe(() => {
@@ -151,45 +156,7 @@
 
             })
 
-
-
-            // store.dispatch(addTodoAction({
-            // id: 0,
-            // name: "Learn Redux",
-            // complete: false
-            // }))
-
-            // store.dispatch(addTodoAction({
-            //     id: 0,
-            //     name: "Learn Redux",
-            //     complete: false
-            // }))
-
-
-            // store.dispatch(addTodoAction({
-            //     id: 1,
-            //     name: "Learn CSS",
-            //     complete: false
-            // }))
-
-            // store.dispatch(addTodoAction({
-            //         id: 2,
-            //         name: "Learn React",
-            //         complete: false
-            // }))
-
-            // store.dispatch(addGoalAction({
-            //         id: 1,
-            //         name: "Lose Weight"
-            // }))
-
-            // store.dispatch(addGoalAction({
-            //         id: 2,
-            //         name: "Earn Money"
-            // }))
-
-            // store.dispatch(removeGoalAction(2))
-
+          
             function addTodo(){
                 const input = document.getElementById('todo')
                 const name = input.value

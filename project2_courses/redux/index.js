@@ -1,5 +1,7 @@
 //Library Code
-function createStore(reducer) {
+/**
+ * Build your own Store
+ * function createStore(reducer) {
     let state;
     let listeners = []
     const getState = () => state
@@ -22,7 +24,7 @@ function createStore(reducer) {
         dispatch
     }
 }
-
+*/
 
 // App Code
 const ADD_TODO = "ADD_TODO"
