@@ -148,13 +148,20 @@
             }
 
             // add a logger middleware
-            
+            const logger = (store)=>(next)=>(action)=>{
+                console.group(action.type)
+                console.log("The action: ", action)
+                const result = next(action)
+                console.log("The new state: ", store.getState())
+                console.groupEnd()
+                return result
+            }
             
             // When you create a store pass the specific reducer fuction on the app data
             const store = Redux.createStore(Redux.combineReducers({
                 todos,
                 goals
-            }), Redux.applyMiddleware(checker))
+            }), Redux.applyMiddleware(checker, logger))
 
             // Can be used for debugging the current store state
             // store.subscribe(() => {
@@ -171,7 +178,7 @@
                 todos.forEach(addTodoToDOM)
                 
                 // for debugging purposes
-                console.log("The new state is ", store.getState())
+                // console.log("The new state is ", store.getState())
 
             })
 
