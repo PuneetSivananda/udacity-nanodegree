@@ -263,7 +263,7 @@
     </script>
 
     <script type="text/babel">
-        const List = (props)=>{
+        const List = (props) => {
             return (
                 <ul>
                     <li>LIST</li>
@@ -272,34 +272,50 @@
             )
         }
 
-        const Todos = ()=>{
+        const Todos = (props) => {
+            const inputRef = React.useRef()
+
+            const addItem = (e) => {
+                e.preventDefault()
+
+                const name = inputRef.current.value
+                inputRef.current.value = ""
+
+                props.store.dispatch(addTodoAction({
+                    name,
+                    complete: false,
+                    id: generate()
+                }))
+            }
             return (
                 <div>
-                    TODOS
-                    <List/>
+                    <h1>Todo List</h1>
+                    <input type="text" placeholder="Add Todo" ref={inputRef} />
+                    <button onClick={addItem}>Add Todo</button>
+                    <List />
                 </div>
             )
         }
 
-        const Goals = ()=>{
+        const Goals = () => {
             return (
                 <div>
                     GOALS
-                    <List/>
+                    <List />
                 </div>
             )
         }
 
-        const App = ()=>{
+        const App = (props) => {
             return (
                 <div>
-                    <Todos/>
-                    <Goals/>
+                    <Todos store={props.store} />
+                    <Goals />
                 </div>
             )
         }
 
-        ReactDOM.render(<App/>, document.getElementById("app"))
+        ReactDOM.render(<App store={store} />, document.getElementById("app"))
     </script>
 </body>
 
