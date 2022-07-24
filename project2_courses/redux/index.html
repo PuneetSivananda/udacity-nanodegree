@@ -159,22 +159,20 @@
             return (
                 <ul>
                     {props.items &&
-                        props.items.map((item) => {
+                        props.items.map((item) => (
                             <li key={item.id}>
                                 <span
                                     onClick={() => props.toggle && props.toggle(item.id)}
                                     style={{
-                                        textDecoration: item.complete ? "line-through" : "none"
+                                        textDecoration: item.complete ? "line-through" : "none",
                                     }}
                                 >
                                     {item.name}
                                 </span>
                                 <button onClick={() => props.remove(item)}>X</button>
                             </li>
-                        })
-                    }
+                        ))}
                 </ul>
-
             )
         }
 
@@ -183,7 +181,6 @@
 
             const addItem = (e) => {
                 e.preventDefault()
-
                 const name = inputRef.current.value
                 inputRef.current.value = ""
 
@@ -203,11 +200,13 @@
             const toggleItem = (id) => {
                 props.store.dispatch(toggleTodoAction(id))
             }
+
             return (
                 <div>
                     <h1>Todo List</h1>
                     <input type="text" placeholder="Add Todo" ref={inputRef} />
                     <button onClick={addItem}>Add Todo</button>
+
                     <List toggle={toggleItem} items={props.todos} remove={removeItem} />
                 </div>
             )
@@ -215,6 +214,7 @@
 
         const Goals = (props) => {
             const inputRef = React.useRef()
+
             const addItem = (e) => {
                 e.preventDefault()
                 const name = inputRef.current.value
@@ -227,9 +227,11 @@
                     })
                 )
             }
+
             const removeItem = (goal) => {
                 props.store.dispatch(removeGoalAction(goal.id))
             }
+
             return (
                 <div>
                     <h1>Goals List</h1>
