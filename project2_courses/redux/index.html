@@ -14,7 +14,7 @@
     <div id="app"></div>
     <script type="text/javascript">
         // Helper Functions
-        function generate() {
+        function generateId() {
             return Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36)
         }
 
@@ -22,7 +22,7 @@
         /**
          * Build your own Store
          * function createStore(reducer) {
-            let state;
+            let state
             let listeners = []
             const getState = () => state
 
@@ -55,40 +55,38 @@
         const ADD_GOAL = "ADD_GOAL"
         const REMOVE_GOAL = "REMOVE_GOAL"
 
-        // Create action creaters for specific actions
         function addTodoAction(todo) {
             return {
                 type: ADD_TODO,
-                todo
+                todo,
             }
         }
 
         function removeTodoAction(id) {
             return {
                 type: REMOVE_TODO,
-                id
+                id,
             }
         }
 
         function toggleTodoAction(id) {
             return {
                 type: TOGGLE_TODO,
-                id
+                id,
             }
         }
 
         function addGoalAction(goal) {
             return {
                 type: ADD_GOAL,
-                goal
+                goal,
             }
         }
-
 
         function removeGoalAction(id) {
             return {
                 type: REMOVE_GOAL,
-                id
+                id,
             }
         }
 
@@ -97,47 +95,47 @@
                 case ADD_TODO:
                     return state.concat([action.todo])
                 case REMOVE_TODO:
-                    return state.filter(todo => todo.id !== action.id)
+                    return state.filter((todo) => todo.id !== action.id)
                 case TOGGLE_TODO:
-                    return state.map((todo) => todo.id !== action.id ? todo : Object.assign({}, todo, { complete: !todo.complete }))
+                    return state.map((todo) =>
+                        todo.id !== action.id
+                            ? todo
+                            : Object.assign({}, todo, { complete: !todo.complete })
+                    )
                 default:
-                    return state;
+                    return state
             }
         }
 
-        //goals reducer
         function goals(state = [], action) {
             switch (action.type) {
                 case ADD_GOAL:
                     return state.concat([action.goal])
                 case REMOVE_GOAL:
-                    return state.filter(goal => goal.id !== action.id)
+                    return state.filter((goal) => goal.id !== action.id)
                 default:
-                    return state;
+                    return state
             }
         }
 
-        // Redux as a middleware
-        // Currying
         const checker = (store) => (next) => (action) => {
             if (
                 action.type === ADD_TODO &&
                 action.todo.name.toLowerCase().includes("bitcoin")
             ) {
-                return alert("Nope, that action is not allowed")
+                return alert("Nope. That's a bad idea.")
             }
 
             if (
                 action.type === ADD_GOAL &&
                 action.goal.name.toLowerCase().includes("bitcoin")
             ) {
-                return alert("Nope, that action is not allowed")
+                return alert("Nope. That's a bad idea.")
             }
 
             return next(action)
         }
 
-        // add a logger middleware
         const logger = (store) => (next) => (action) => {
             console.group(action.type)
             console.log("The action: ", action)
@@ -147,12 +145,13 @@
             return result
         }
 
-        // When you create a store pass the specific reducer fuction on the app data
-        const store = Redux.createStore(Redux.combineReducers({
-            todos,
-            goals
-        }), Redux.applyMiddleware(checker, logger))
-
+        const store = Redux.createStore(
+            Redux.combineReducers({
+                todos,
+                goals,
+            }),
+            Redux.applyMiddleware(checker, logger)
+        )
     </script>
 
     <script type="text/babel">
@@ -188,11 +187,13 @@
                 const name = inputRef.current.value
                 inputRef.current.value = ""
 
-                props.store.dispatch(addTodoAction({
-                    name,
-                    complete: false,
-                    id: generate()
-                }))
+                props.store.dispatch(
+                    addTodoAction({
+                        name,
+                        complete: false,
+                        id: generateId(),
+                    })
+                )
             }
 
             const removeItem = (todo) => {
@@ -200,8 +201,8 @@
             }
 
             const toggleItem = (id) => {
-                props.store.dispatch(toggleTodoAction(id));
-            };
+                props.store.dispatch(toggleTodoAction(id))
+            }
             return (
                 <div>
                     <h1>Todo List</h1>
@@ -221,7 +222,7 @@
 
                 props.store.dispatch(
                     addGoalAction({
-                        id: generate(),
+                        id: generateId(),
                         name,
                     })
                 )
@@ -243,8 +244,8 @@
             const [value, setValue] = React.useState(0)
 
             React.useEffect(() => {
-                store.subscribe(() => setValue((value) => value + 1));
-            }, []);
+                store.subscribe(() => setValue((value) => value + 1))
+            }, [])
 
             const { todos, goals } = store.getState()
 
