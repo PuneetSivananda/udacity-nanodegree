@@ -225,6 +225,10 @@
 
             const removeItem = (todo) => {
                 props.store.dispatch(removeTodoAction(todo.id))
+                return API.deleteTodo(todo.id).catch(() => {
+                    props.store.dispatch(addTodoAction(todo))
+                    alert("An error occured try again.")
+                })
             }
 
             const toggleItem = (id) => {
@@ -260,6 +264,10 @@
 
             const removeItem = (goal) => {
                 props.store.dispatch(removeGoalAction(goal.id))
+                return API.deleteGoal(goal.id).catch(() => {
+                    props.store.dispatch(addGoalAction(goal))
+                    alert("An error occured try again.")
+                })
             }
 
             return (
@@ -287,7 +295,7 @@
 
             const { todos, goals, loading } = store.getState()
 
-            if(loading===true) return <h3>Loading..</h3>
+            if (loading === true) return <h3>Loading..</h3>
 
             return (
                 <div>
