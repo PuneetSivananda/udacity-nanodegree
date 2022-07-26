@@ -211,16 +211,22 @@
 
             const addItem = (e) => {
                 e.preventDefault()
-                const name = inputRef.current.value
-                inputRef.current.value = ""
+                return API.saveGoal(inputRef.current.value).then((todo) => {
+                    props.store.dispatch(addTodoAction(todo))
+                    inputRef.current.value = ""
+                }).catch(() => {
+                    alert("There was an error, Try again")
+                })
+                // const name = inputRef.current.value
+                // inputRef.current.value = ""
 
-                props.store.dispatch(
-                    addTodoAction({
-                        name,
-                        complete: false,
-                        id: generateId(),
-                    })
-                )
+                // props.store.dispatch(
+                //     addTodoAction({
+                //         name,
+                //         complete: false,
+                //         id: generateId(),
+                //     })
+                // )
             }
 
             const removeItem = (todo) => {
@@ -233,6 +239,10 @@
 
             const toggleItem = (id) => {
                 props.store.dispatch(toggleTodoAction(id))
+                return API.saveTodoToggle(id).catch(() => {
+                    props.store.dispatch(toggleTodoAction(id))
+                    alert("An error occurred, Try Again")
+                })
             }
 
             return (
@@ -251,15 +261,25 @@
 
             const addItem = (e) => {
                 e.preventDefault()
-                const name = inputRef.current.value
-                inputRef.current.value = ""
 
-                props.store.dispatch(
-                    addGoalAction({
-                        id: generateId(),
-                        name,
-                    })
-                )
+                return API.saveTodo(inputRef.current.value).then((goal) => {
+                    props.store.dispatch(
+                        addGoalAction(goal)
+                    )
+                    inputRef.current.value = ""
+                }).catch(() => {
+                    alert("There was an error, Please Try again.")
+                })
+
+                // const name = inputRef.current.value
+                // inputRef.current.value = ""
+
+                // props.store.dispatch(
+                //     addGoalAction({
+                //         id: generateId(),
+                //         name,
+                //     })
+                // )
             }
 
             const removeItem = (goal) => {
