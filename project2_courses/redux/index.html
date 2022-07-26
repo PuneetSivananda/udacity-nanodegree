@@ -186,13 +186,23 @@
             return result
         }
 
+        //Custom Thunk middleware
+        /**
+        const thunk = (store) => (next) => (action) => {
+            if (typeof action === "function") {
+                return action(store.dispatch)
+            }
+            next(action)
+        }
+        */
+
         const store = Redux.createStore(
             Redux.combineReducers({
                 todos,
                 goals,
                 loading,
             }),
-            Redux.applyMiddleware(checker, logger)
+            Redux.applyMiddleware(ReduxThunk.default, checker, logger)
         )
     </script>
 
