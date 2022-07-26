@@ -106,6 +106,15 @@
             }
         }
 
+        const handleInitialData = () => {
+            return (dispatch) => {
+                return Promise.all([API.fetchTodos(), API.fetchGoals()]).then(
+                    ([todos, goals]) => {
+                        dispatch(recieveDataAction(todos, goals))
+                    });
+            }
+        }
+
         const handleAddTodo = (name, cb) => {
             return (dispatch) => {
                 return API.saveTodo(name).then((todo) => {
@@ -338,9 +347,7 @@
             }, [])
 
             React.useEffect(() => {
-                Promise.all([API.fetchTodos(), API.fetchGoals()]).then(([todos, goals]) => {
-                    props.store.dispatch(recieveDataAction(todos, goals))
-                });
+                store.dispatch(handleInitialData())
             }, []);
 
             const { todos, goals, loading } = store.getState()
