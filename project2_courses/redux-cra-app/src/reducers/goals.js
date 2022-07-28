@@ -1,3 +1,6 @@
+import { RECIEVE_DATA } from "../actions/shared"
+import { ADD_GOAL, REMOVE_GOAL } from "../actions/goals"
+
 export function goals(state = [], action) {
     switch (action.type) {
         case ADD_GOAL:
