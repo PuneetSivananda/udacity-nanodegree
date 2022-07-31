@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { connect } from "react-redux"
+import { handleAddTweet } from "../actions/tweets"
 
-const NewTweet = () => {
+const NewTweet = ({ dispatch, id }) => {
     const [text, setText] = useState("")
     const handleChange = (e) => {
         const text = e.target.value
@@ -9,6 +11,7 @@ const NewTweet = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log("New Tweet ", text)
+        dispatch(handleAddTweet(text, id))
         setText("")
     }
     const tweetLeft = 200 - text.length
@@ -34,4 +37,4 @@ const NewTweet = () => {
     )
 }
 
-export default NewTweet
+export default connect()(NewTweet)
